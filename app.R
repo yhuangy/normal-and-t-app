@@ -18,7 +18,16 @@ ui <- fluidPage(
                    ))
                  )
                ),
-               mainPanel(plotOutput("distPlot")),
+               mainPanel(
+                 plotOutput("distPlot"),
+                 br(),
+                 helpText(HTML(
+                   "<strong>Note:</strong> We compare the <strong>standard normal distribution</strong> and the <strong>t-distribution</strong>.
+                    Both distributions are symmetric and centered at zero. 
+      The standard normal has a fixed shape, while the t-distribution varies depending on the degrees of freedom (df). 
+      As df increases, the t-distribution approaches the standard normal."
+                 ))),
+               
              )
     ),
     
@@ -36,6 +45,11 @@ ui <- fluidPage(
                ),
                mainPanel(
                  plotOutput("cumPlot"),
+                 br(),
+                 helpText(HTML(
+                   "<strong>Note:</strong> As the degrees of freedom increase, the <strong>t-distribution</strong> approaches the standard normal. 
+                    When df is large (≥ 30 as a practical rule of thumb), the normal distribution is often used as a convenient approximation for calculating probabilities."
+                 )),
                  uiOutput("r_code_header"),
                  verbatimTextOutput("cum_code")
                )
@@ -110,26 +124,7 @@ server <- function(input, output) {
   
   # Cumulative probability code
   output$r_code_header <- renderUI({
-    x <- input$x_val
-    
-    if (input$dist_choice == "normal") {
-      prob <- round(pnorm(x), 4)
-      tagList(
-        p(
-          paste0("P(X ≤ ", x, ") under standard normal distribution: ", prob)
-        ),
-        strong("Base R code to compute cumulative probability")
-      )
-    } else {
-      df <- input$df_cum
-      prob <- round(pt(x, df), 4)
-      tagList(
-        p(
-          paste0("P(X ≤ ", x, ") under t-distribution (df = ", df, "): ", prob)
-        ),
-        strong("Base R code to compute cumulative probability")
-      )
-    }
+    strong("Base R code")
   })
   
   
