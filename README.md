@@ -2,9 +2,7 @@
 
 ![Screenshot of the app](interface.png)
 
-This is a simple ShinyApp developed for [DSE1101](https://nusmods.com/courses/DSE1101/introductory-data-science-for-economics).
-
-It allows students to:
+This is a simple ShinyApp developed for [DSE1101](https://nusmods.com/courses/DSE1101/introductory-data-science-for-economics) that allows students to:
 
 + Compare standard normal and t-distributions.
 
