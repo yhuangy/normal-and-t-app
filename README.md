@@ -10,4 +10,4 @@ This is a simple ShinyApp developed for [DSE1101](https://nusmods.com/courses/DS
 
 + View the (base) R code for cumulative probabilities.
 
-Access the app [here](https://ythuangy-clt-app.share.connect.posit.cloud/).
+Access the app [here](https://ythuangy-normal-and-t-app.share.connect.posit.cloud).
