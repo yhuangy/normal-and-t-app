@@ -1,7 +1,15 @@
 library(shiny)
+library(bslib)
+
+# UI and theme
+app_theme <- bs_theme(
+  version = 5,
+  bootswatch = "sandstone"
+)
 
 ui <- fluidPage(
-  titlePanel("Standard Normal and t-Distributions"),
+  theme = app_theme,
+  titlePanel("Comparing Standard Normal and t-Distributions"),
   tabsetPanel(
     # First tab: Plot Distributions
     tabPanel("Plot Distributions",
@@ -11,7 +19,7 @@ ui <- fluidPage(
                  conditionalPanel(
                    condition = "input.add_t == true",
                    numericInput("df", "Degrees of Freedom (df):", value = 3, min = 1),
-                   # --- Credit ----
+                   # information
                    br(),
                    HTML(paste0(
                      "Developed for <strong>DSE1101</strong>: Introduction to Data Science for Economics."
@@ -41,7 +49,12 @@ ui <- fluidPage(
                  conditionalPanel(
                    condition = "input.dist_choice == 't'",
                    numericInput("df_cum", "Degrees of Freedom (df):", value = 30, min = 1)
-                 )
+                 ),
+                 # information
+                 br(),
+                 HTML(paste0(
+                   "Developed for <strong>DSE1101</strong>: Introduction to Data Science for Economics."
+                 ))
                ),
                mainPanel(
                  plotOutput("cumPlot"),
@@ -68,7 +81,7 @@ server <- function(input, output) {
     
     if (input$add_t) {
       lines(x, dt(x, df = input$df), col = "greenyellow", lwd = 3.5, lty = "dashed")
-      legend("topleft", legend = c("Standard normal", "t-distribution"), 
+      legend("topleft", legend = c("Standard normal distribution", "t-distribution"), 
              col = c("steelblue", "greenyellow"),
              lwd = 3, lty = c("solid", "dashed"))
     } else {
@@ -124,7 +137,7 @@ server <- function(input, output) {
   
   # Cumulative probability code
   output$r_code_header <- renderUI({
-    strong("Base R code")
+    strong("Base R code for cumulative probability:")
   })
   
   
